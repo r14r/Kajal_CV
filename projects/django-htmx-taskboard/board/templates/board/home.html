@@ -1,0 +1,7 @@
+{% load static %}
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Momentum | Task board</title><link rel="stylesheet" href="{% static 'board/site.css' %}"><script src="{% static 'board/htmx.min.js' %}" defer></script></head>
+<body><div class="layout"><aside><a class="logo" href="/">✳ momentum</a><p class="side-label">WORKSPACE</p><a class="side-item current" href="/">▦ &nbsp; My tasks</a><div class="side-tip"><strong>One step at a time.</strong><p>A small Django + HTMX project. Changes are stored in SQLite.</p></div></aside>
+<main><header><p class="eyebrow">YOUR WORKSPACE / TASK BOARD</p><h1>Make today count<span>.</span></h1><p>Capture a task, mark progress, and keep moving.</p></header>
+<section class="entry" aria-label="New task"><h2>Add a task</h2><div id="task-form">{% include 'board/_form.html' %}</div></section>
+<section class="board" aria-label="Task list"><div id="task-list">{% include 'board/_task_list.html' %}</div></section>
+</main></div></body></html>

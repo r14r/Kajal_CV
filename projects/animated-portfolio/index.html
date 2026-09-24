@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An animated responsive web design demonstration.">
+  <title>Northstar Studio - Design in motion</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Northstar Studio home"><span class="brand-mark">✦</span> northstar<span class="dot">.</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation"><span></span><span></span><span></span></button>
+    <nav id="site-nav" aria-label="Main navigation">
+      <a href="#work">Work</a><a href="#process">Process</a><a href="#about">About</a><a class="nav-cta" href="#contact">Let's talk <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <section id="home" class="hero section-pad">
+      <div class="hero-orb orb-one" aria-hidden="true"></div><div class="hero-orb orb-two" aria-hidden="true"></div>
+      <div class="hero-content"><p class="eyebrow animate-in"><span class="pulse"></span> INDEPENDENT DIGITAL STUDIO</p>
+        <h1 class="animate-in">Ideas made<br><em>impossible</em><br>to ignore<span class="dot">.</span></h1>
+        <p class="hero-description animate-in">A concept site exploring thoughtful design, expressive motion, and clear navigation. Built with plain HTML, CSS, and JavaScript.</p>
+        <div class="hero-actions animate-in"><a class="button button-primary" href="#work">Explore projects <span aria-hidden="true">↘</span></a><a class="text-link" href="#process">See how it works <span aria-hidden="true">→</span></a></div>
+      </div>
+      <div class="hero-index" aria-hidden="true">01 / 04 <span>SCROLL TO EXPLORE ↓</span></div>
+    </section>
+    <div class="marquee" aria-hidden="true"><div class="marquee-track">DESIGN WITH PURPOSE <span>✳</span> BUILD WITH CURIOSITY <span>✳</span> DESIGN WITH PURPOSE <span>✳</span> BUILD WITH CURIOSITY <span>✳</span></div></div>
+    <section id="work" class="work section-pad"><div class="section-heading reveal"><div><p class="eyebrow">01 / SELECTED WORK</p><h2>Things worth<br><em>looking at.</em></h2></div><p>Three visual directions made for this portfolio demonstration. Each card is rendered with CSS.</p></div>
+      <div class="project-grid">
+        <article class="project-card reveal"><div class="project-visual visual-one"><div class="visual-ring"></div><div class="visual-label">orbit<span>®</span></div></div><div class="project-meta"><div><h3>Orbit Identity</h3><p>Brand system · Art direction</p></div><span aria-hidden="true">↗</span></div></article>
+        <article class="project-card reveal"><div class="project-visual visual-two"><div class="sun"></div><div class="visual-type">A<br>new<br>day.</div></div><div class="project-meta"><div><h3>New Day</h3><p>Campaign · Editorial</p></div><span aria-hidden="true">↗</span></div></article>
+        <article class="project-card reveal"><div class="project-visual visual-three"><div class="glass-card">FIELD NOTES <small>COLLECTION / 2026</small><span>001 — 024</span></div></div><div class="project-meta"><div><h3>Field Notes</h3><p>Digital experience · Motion</p></div><span aria-hidden="true">↗</span></div></article>
+      </div>
+    </section>
+    <section id="process" class="process section-pad"><div class="section-heading reveal"><div><p class="eyebrow">02 / THE APPROACH</p><h2>A little wonder.<br><em>A lot of intention.</em></h2></div></div><div class="steps"><article class="reveal"><span>01</span><h3>Find the story</h3><p>Understand the audience, the message, and what matters most.</p></article><article class="reveal"><span>02</span><h3>Shape the idea</h3><p>Make layouts, colour, type, and interaction work together.</p></article><article class="reveal"><span>03</span><h3>Make it real</h3><p>Build responsive pages and refine the details on every screen.</p></article></div></section>
+    <section id="about" class="about section-pad"><div class="about-art" aria-hidden="true"><div class="about-circle">N✦</div></div><div class="about-copy reveal"><p class="eyebrow">03 / ABOUT THIS DEMO</p><h2>Good design feels like an invitation.</h2><p>Northstar is a fictional studio created as an accessible front-end portfolio example. It shows semantic structure, CSS artwork, responsive layouts, animation, and keyboard-friendly navigation.</p><a class="text-link" href="#contact">Get in touch <span aria-hidden="true">↗</span></a></div></section>
+    <section id="contact" class="contact section-pad"><p class="eyebrow reveal">04 / CONTACT</p><h2 class="reveal">Let's make<br><em>something move.</em></h2><p class="reveal">This is a demo: the contact action opens your email app and does not send data to a server.</p><a class="button button-light reveal" href="mailto:hello@example.com?subject=Northstar%20demo">Open email app <span aria-hidden="true">↗</span></a></section>
+  </main>
+  <footer><span>© 2026 Northstar Studio · Fictional portfolio concept</span><a href="#home">Back to top ↑</a></footer>
+</body>
+</html>

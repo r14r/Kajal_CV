@@ -1,0 +1,6 @@
+<form hx-post="{% url 'add_task' %}" hx-target="#task-list" hx-swap="innerHTML" hx-include="this" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+  {% csrf_token %}<div class="field"><label for="id_title">Task name</label>{{ form.title }}{% for error in form.title.errors %}<p class="error">{{ error }}</p>{% endfor %}</div>
+  <div class="field"><label for="id_note">Notes</label>{{ form.note }}{% for error in form.note.errors %}<p class="error">{{ error }}</p>{% endfor %}</div>
+  <button type="submit">Add task <span aria-hidden="true">→</span></button>
+</form>
+<script>document.body.addEventListener('taskAdded', function () { document.querySelector('#task-form form').reset(); });</script>

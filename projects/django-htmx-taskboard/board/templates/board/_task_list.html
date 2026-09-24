@@ -1,0 +1,11 @@
+<div class="board-head"><div><p class="eyebrow">FOCUS ON THE NEXT STEP</p><h2>My tasks <span class="counter">{{ total_count }}</span></h2></div><p>{{ open_count }} still open</p></div>
+<div class="filters" role="group" aria-label="Task filter">
+  <button type="button" class="{% if active == 'all' %}active{% endif %}" hx-get="{% url 'tasks' %}?filter=all" hx-target="#task-list">All</button>
+  <button type="button" class="{% if active == 'open' %}active{% endif %}" hx-get="{% url 'tasks' %}?filter=open" hx-target="#task-list">To do</button>
+  <button type="button" class="{% if active == 'done' %}active{% endif %}" hx-get="{% url 'tasks' %}?filter=done" hx-target="#task-list">Done</button>
+</div>
+<ul class="tasks">{% for task in tasks %}<li class="task {% if task.done %}completed{% endif %}">
+  <form hx-post="{% url 'toggle_task' task.pk %}" hx-target="#task-list" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'><input type="hidden" name="filter" value="{{ active }}"><button class="check" type="submit" aria-label="{% if task.done %}Reopen{% else %}Complete{% endif %} {{ task.title }}">{% if task.done %}✓{% endif %}</button></form>
+  <div class="task-text"><strong>{{ task.title }}</strong>{% if task.note %}<p>{{ task.note }}</p>{% endif %}<small>Added {{ task.created_at|date:'M j, Y' }}</small></div>
+  <form hx-post="{% url 'delete_task' task.pk %}" hx-target="#task-list" hx-confirm="Delete this task?" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'><input type="hidden" name="filter" value="{{ active }}"><button type="submit" class="delete" aria-label="Delete {{ task.title }}">×</button></form>
+</li>{% empty %}<li class="empty">Nothing here yet. Add a task above to get started.</li>{% endfor %}</ul>

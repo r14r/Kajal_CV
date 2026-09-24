@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Study Planner</title><style>
+:root{font:16px system-ui,sans-serif;color:#163047;background:#f4f7fb}*{box-sizing:border-box}body{margin:0}
+header{background:#12334d;color:white;padding:28px max(20px,calc((100vw - 950px)/2))}h1{margin:0;font-size:2rem}
+main{max-width:950px;margin:32px auto;padding:0 18px}.panel{background:white;border-radius:16px;padding:24px;margin-bottom:20px;box-shadow:0 4px 20px #12334d14}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}label{font-weight:600;display:block;margin-bottom:4px}input,select,textarea,button{font:inherit}
+input,select,textarea{width:100%;padding:10px;border:1px solid #9eb0bd;border-radius:8px}textarea{min-height:76px}
+button{border:0;border-radius:8px;padding:10px 16px;background:#126a91;color:white;cursor:pointer}button.secondary{background:#526774}button.danger{background:#a43d48}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #ffbc62}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.item{border-top:1px solid #d8e3ec;padding:16px 0}.item h3{margin:0 0 5px}.item p{white-space:pre-wrap;overflow-wrap:anywhere}
+.badge{display:inline-block;background:#e3f4f8;border-radius:20px;padding:3px 10px}#message{min-height:26px;color:#9b2537}.muted{color:#526774}
+@media(max-width:620px){.grid{grid-template-columns:1fr}header{padding:24px 18px}}
+</style></head><body><header><h1>Study Planner</h1><p>Plan coursework and track progress without an account.</p></header>
+<main><section class="panel"><h2 id="formHeading">Add task</h2><form id="form"><div class="grid">
+<div><label for="title">Task name</label><input id="title" maxlength="120" required></div>
+<div><label for="status">Status</label><select id="status"></select></div></div>
+<p><label for="detail">Course / deadline / notes</label><textarea id="detail" maxlength="1000"></textarea></p>
+<div class="actions"><button type="submit">Save</button><button type="button" id="cancel" class="secondary" hidden>Cancel edit</button></div></form><p id="message" role="alert"></p></section>
+<section class="panel"><h2>Your tasks</h2><div class="grid"><div><label for="filter">Filter by status</label><select id="filter"></select></div>
+<div><label for="search">Search</label><input id="search" type="search" placeholder="Search title or details"></div></div>
+<p id="count" class="muted"></p><div id="list"></div></section></main>
+<script>
+const states=["To do", "In progress", "Done"];let items=[],editing=null;
+const $=id=>document.getElementById(id), status=$('status'),filter=$('filter');
+for(const state of states){for(const select of [status,filter]){const option=document.createElement('option');option.value=state;option.textContent=state;select.append(option)}}
+filter.add(new Option('All statuses',''),0);filter.value='';
+function message(value){$('message').textContent=value}
+async function request(path,options={}){const response=await fetch(path,options);const body=await response.json();if(!response.ok)throw Error(body.error||'Request failed');return body}
+async function refresh(){try{items=await request('/api/items');render();message('')}catch(error){message(error.message)}}
+function reset(){editing=null;$('form').reset();$('formHeading').textContent='Add task';$('cancel').hidden=true;message('')}
+function render(){const root=$('list');root.replaceChildren();const q=$('search').value.toLowerCase();const shown=items.filter(item=>(!filter.value||item.status===filter.value)&&(item.title.toLowerCase().includes(q)||item.detail.toLowerCase().includes(q)));
+$('count').textContent=`${shown.length} of ${items.length} items`;if(!shown.length){const empty=document.createElement('p');empty.textContent='No matching items yet.';root.append(empty)}
+for(const item of shown){const article=document.createElement('article');article.className='item';const h=document.createElement('h3');h.textContent=item.title;
+const badge=document.createElement('span');badge.className='badge';badge.textContent=item.status;const p=document.createElement('p');p.textContent=item.detail;
+const actions=document.createElement('div');actions.className='actions';const edit=document.createElement('button');edit.textContent='Edit';edit.className='secondary';edit.onclick=()=>{editing=item.id;$('title').value=item.title;$('detail').value=item.detail;status.value=item.status;$('formHeading').textContent='Edit task';$('cancel').hidden=false;$('title').focus();scrollTo(0,0)};
+const del=document.createElement('button');del.textContent='Delete';del.className='danger';del.onclick=async()=>{if(!confirm('Delete this item?'))return;try{await request('/api/items/'+item.id,{method:'DELETE'});if(editing===item.id)reset();await refresh()}catch(error){message(error.message)}};
+actions.append(edit,del);article.append(h,badge,p,actions);root.append(article)}}
+$('form').onsubmit=async event=>{event.preventDefault();const data={title:$('title').value,detail:$('detail').value,status:status.value};
+try{await request(editing===null?'/api/items':'/api/items/'+editing,{method:editing===null?'POST':'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});reset();await refresh()}catch(error){message(error.message)}};
+$('cancel').onclick=reset;filter.onchange=render;$('search').oninput=render;refresh();
+</script></body></html>

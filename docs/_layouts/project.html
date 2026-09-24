@@ -1,0 +1,27 @@
+---
+layout: default
+---
+<section class="project-hero page-pad">
+  <div class="project-hero-orb" aria-hidden="true"></div>
+  <a class="back-link" href="{{ '/' | relative_url }}#projects">← All projects</a>
+  <div class="project-head reveal">
+    <p class="eyebrow">PROJECT {{ page.number }} <span class="eyebrow-line"></span> {{ page.category }}</p>
+    <h1>{{ page.title | escape }}<span class="accent">.</span></h1>
+    <p class="lead">{{ page.description | escape }}</p>
+    <div class="hero-actions"><a class="pill-button light" href="{{ site.repository_url }}/tree/main/projects/{{ page.source }}" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a><a class="pill-button outline" href="#details">Explore details <span aria-hidden="true">↓</span></a></div>
+  </div>
+  <div class="project-hero-number" aria-hidden="true">{{ page.number }}</div>
+</section>
+<div class="project-body page-pad" id="details">
+  <div class="project-intro reveal"><p class="eyebrow dark">THE PROJECT</p><div class="prose">{{ content }}</div></div>
+  <aside class="project-aside reveal"><p class="eyebrow dark">AT A GLANCE</p><dl><dt>Category</dt><dd>{{ page.category | escape }}</dd><dt>Technology</dt><dd>{{ page.technology | escape }}</dd><dt>Runtime</dt><dd>{{ page.runtime | escape }}</dd></dl><p class="honesty-note">These are prepared learning projects. Kajal should study and personalise the code before presenting her own contributions.</p></aside>
+</div>
+<nav class="next-project page-pad" aria-label="Next project">
+  {% assign next_index = page.order | plus: 0 %}
+  {% if next_index < site.data.projects.size %}
+    {% assign next_item = site.data.projects[next_index] %}
+    <span class="eyebrow">UP NEXT</span><a href="{{ next_item.url | relative_url }}">{{ next_item.title }} <span aria-hidden="true">↗</span></a>
+  {% else %}
+    <span class="eyebrow">KEEP EXPLORING</span><a href="{{ '/' | relative_url }}#projects">All projects <span aria-hidden="true">↗</span></a>
+  {% endif %}
+</nav>

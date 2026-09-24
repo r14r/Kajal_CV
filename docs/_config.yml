@@ -1,0 +1,9 @@
+title: Kajal | Developer Portfolio
+description: Learning projects in web development, Django, FastAPI and retrieval-augmented generation.
+url: https://r14r.github.io
+baseurl: /Kajal_CV
+repository_url: https://github.com/r14r/Kajal_CV
+markdown: kramdown
+permalink: pretty
+exclude:
+  - README.md

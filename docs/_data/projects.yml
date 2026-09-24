@@ -1,0 +1,35 @@
+- title: Animated Portfolio
+  url: /projects/animated-portfolio/
+  source: animated-portfolio
+  category: Frontend / Motion
+  number: "01"
+  icon: "✦"
+  description: A responsive concept website with CSS artwork, mobile navigation and reduced-motion support.
+- title: Django Task Board
+  url: /projects/django-htmx-taskboard/
+  source: django-htmx-taskboard
+  category: Django / HTMX
+  number: "02"
+  icon: "▦"
+  description: Server-rendered task management with partial updates, validation, SQLite and CSRF protection.
+- title: Notebook Chat
+  url: /projects/fastapi-rag-chat/
+  source: fastapi-rag-chat
+  category: FastAPI / RAG
+  number: "03"
+  icon: "◈"
+  description: A local knowledge-base chat with source citations, retrieval and optional Ollama generation.
+- title: Job Application Tracker
+  url: /projects/job-application-tracker/
+  source: job-application-tracker
+  category: Python / SQLite
+  number: "04"
+  icon: "↗"
+  description: A single-user tool to record, search, filter and update job applications.
+- title: Study Planner
+  url: /projects/study-planner/
+  source: study-planner
+  category: Python / SQLite
+  number: "05"
+  icon: "◎"
+  description: A local coursework planner with task editing, status filters and persistent storage.

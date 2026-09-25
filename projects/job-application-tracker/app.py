@@ -2,7 +2,7 @@
 from pathlib import Path
 
 import streamlit as st
-from storage import STATUSES, delete, list_items, save
+from application_store import STATUSES, delete, list_items, save
 
 DB_PATH = str(Path(__file__).with_name("data.sqlite3"))
 

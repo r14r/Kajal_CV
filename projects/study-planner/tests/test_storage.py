@@ -2,7 +2,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from storage import STATUSES, delete, list_items, save
+from planner_store import STATUSES, delete, list_items, save
 
 
 class StorageTests(unittest.TestCase):

@@ -19,13 +19,13 @@
       <p class="nav-label">EXPLORE</p>
       <nav aria-label="Primary navigation">
         <a class="nav-link {% if page.url == '/' %}active{% endif %}" {% if page.url == '/' %}aria-current="page"{% endif %} href="{{ '/' | relative_url }}"><span class="nav-symbol">⌂</span> Overview</a>
-        <p class="nav-label nav-label-projects">PROJECTS <span>05</span></p>
+        <p class="nav-label nav-label-projects">PROJECTS <span>06</span></p>
         {% for item in site.data.projects %}
           <a class="nav-link {% if page.url == item.url %}active{% endif %}" {% if page.url == item.url %}aria-current="page"{% endif %} href="{{ item.url | relative_url }}"><span class="nav-symbol">{{ item.icon }}</span> {{ item.title }}</a>
         {% endfor %}
       </nav>
       <div class="sidebar-bottom"><span class="online-dot" aria-hidden="true"></span> Portfolio study collection
-        <p>Five runnable projects. Each has its own setup guide and source code.</p>
+        <p>Six runnable projects. Each has its own setup guide and source code.</p>
         <a href="{{ site.repository_url }}" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a>
       </div>
     </aside>

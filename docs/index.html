@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Overview
-description: Five learning projects covering web design, Django, FastAPI and local RAG.
+description: Six learning projects covering web design, Django, FastAPI and local RAG.
 permalink: /
 ---
 <section class="home-hero page-pad" aria-labelledby="hero-heading">
@@ -13,11 +13,11 @@ permalink: /
   </div>
   <div class="hero-foot"><span>PORTFOLIO / 2026</span><span>SCROLL TO EXPLORE ↓</span></div>
 </section>
-<section id="projects" class="projects-section page-pad" aria-labelledby="projects-heading"><div class="section-top reveal"><div><p class="eyebrow dark">01 / SELECTED PROJECTS</p><h2 id="projects-heading">Built to explore<span class="accent">.</span></h2></div><p>Five runnable examples, from animated interfaces to a local knowledge-base chat.</p></div>
+<section id="projects" class="projects-section page-pad" aria-labelledby="projects-heading"><div class="section-top reveal"><div><p class="eyebrow dark">01 / SELECTED PROJECTS</p><h2 id="projects-heading">Built to explore<span class="accent">.</span></h2></div><p>Six runnable examples, from animated interfaces to data cleaning and local knowledge-base chat.</p></div>
   <div class="cards">
     {% for item in site.data.projects %}
     <a class="project-card reveal card-{{ forloop.index }}" href="{{ item.url | relative_url }}" aria-label="Explore {{ item.title | escape }}">
-      <div class="card-top"><span class="card-index">{{ item.number }} / 05</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+      <div class="card-top"><span class="card-index">{{ item.number }} / 06</span><span class="card-arrow" aria-hidden="true">↗</span></div>
       <div class="card-art" aria-hidden="true"><span>{{ item.icon }}</span></div>
       <div class="card-bottom"><span class="card-category">{{ item.category }}</span><h3>{{ item.title }}</h3><p>{{ item.description }}</p></div>
     </a>

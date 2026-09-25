@@ -1,6 +1,6 @@
 # Jekyll portfolio website
 
-This folder is the GitHub Pages source for the `Kajal_CV` repository. It has a custom Jekyll layout, animated home hero, responsive sidebar, and five project detail pages. The site describes the projects as learning examples, with no invented work history or contact details.
+This folder is the GitHub Pages source for the `Kajal_CV` repository. It has a custom Jekyll layout, animated home hero, responsive sidebar, and six project detail pages. The site describes the projects as learning examples, with no invented work history or contact details.
 
 ## Publish from GitHub Pages
 
@@ -22,4 +22,4 @@ Use `relative_url` for internal links, so the site works at `/Kajal_CV/`. If the
 
 With Ruby and Jekyll installed, run `jekyll serve --source docs --baseurl /Kajal_CV` from the repository root and open the URL printed by Jekyll. The site does not require third-party themes or plugins. Optional Google Fonts fall back to system fonts offline.
 
-The GitHub Pages site is static: Python, Django, FastAPI and Ollama projects are documented here, but their backends must be run separately as described in their own READMEs.
+The GitHub Pages site is static: Streamlit, Django, FastAPI and Ollama projects are documented here, but their backends must be run separately as described in their own READMEs.

@@ -1,27 +1,17 @@
-# Study Planner
+# Study planner · Streamlit
 
-A complete, local single-user web app. Uses Python 3.10+ standard library, SQLite, HTML, CSS, and JavaScript. No installation, account, network connection, or API key is needed.
+A single-user local dashboard for coursework. Add, edit, filter, search and delete tasks, and see progress counts. It persists to a local SQLite database. No account or internet access is required after installation.
 
 ## Run
 
+From the repository root:
+
 ```bash
 cd projects/study-planner
-python3 server.py
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+streamlit run app.py --server.address 127.0.0.1 --server.port 8502
 ```
 
-Open <http://127.0.0.1:8762>. Press Ctrl+C to stop. The app creates `data.sqlite3` beside `server.py`; it persists between restarts and is ignored by Git. Do not publish private data from that file.
-
-## Capabilities
-
-- Add, edit, delete, search, and filter tasks.
-- Data validation in both the browser and server; server responses for invalid requests and missing items.
-- Responsive layout; readable on phones.
-- Local HTTP JSON API: `GET /api/items`, `GET /api/items?status=...`, `POST /api/items`, `PUT /api/items/ID`, `DELETE /api/items/ID`.
-
-## Verification
-
-Run `python3 -m unittest discover -s tests -v` in this folder. Then add an item in the browser, reload, edit it, filter it, and delete it.
-
-## Design notes
-
-This app binds to `127.0.0.1` and has no login. It is a portfolio demonstration, not a multi-user production service. HTML is built with DOM `textContent` so entered notes are displayed as text. To deploy publicly, add authentication, access control, HTTPS, and a production server.
+Open http://127.0.0.1:8502/. Windows: activate with `.venv\Scripts\activate`. For checks, run `python -m unittest discover -s tests -v` from this directory. Storage is in `data.sqlite3` beside the app; back it up to retain your records. The delete button deletes the selected task. This is a local learning app without sign-in or multi-user access.

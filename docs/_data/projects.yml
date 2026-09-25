@@ -22,14 +22,21 @@
 - title: Job Application Tracker
   url: /projects/job-application-tracker/
   source: job-application-tracker
-  category: Python / SQLite
+  category: Streamlit / SQLite
   number: "04"
   icon: "↗"
-  description: A single-user tool to record, search, filter and update job applications.
+  description: A Streamlit dashboard to record, search, filter and update job applications.
 - title: Study Planner
   url: /projects/study-planner/
   source: study-planner
-  category: Python / SQLite
+  category: Streamlit / SQLite
   number: "05"
   icon: "◎"
-  description: A local coursework planner with task editing, status filters and persistent storage.
+  description: A Streamlit coursework planner with task editing, status filters and persistent storage.
+- title: Data Cleaning Studio
+  url: /projects/data-cleaning-studio/
+  source: data-cleaning-studio
+  category: Streamlit / Data
+  number: "06"
+  icon: "◫"
+  description: Clean CSVs, explore public weather, financial and economic data, and export results.

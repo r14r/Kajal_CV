@@ -1,26 +1,35 @@
 ---
 layout: default
 ---
+{% assign project = site.data.cv.projects | where: "slug", page.source | first %}
 <section class="project-hero page-pad">
   <div class="project-hero-orb" aria-hidden="true"></div>
   <a class="back-link" href="{{ '/' | relative_url }}#projects">← All projects</a>
   <div class="project-head reveal">
-    <p class="eyebrow">PROJECT {{ page.number }} <span class="eyebrow-line"></span> {{ page.category }}</p>
-    <h1>{{ page.title | escape }}<span class="accent">.</span></h1>
-    <p class="lead">{{ page.description | escape }}</p>
-    <div class="hero-actions"><a class="pill-button light" href="{{ site.repository_url }}/tree/main/projects/{{ page.source }}" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a><a class="pill-button outline" href="#details">Explore details <span aria-hidden="true">↓</span></a></div>
+    <p class="eyebrow">PROJECT {{ project.number }} <span class="eyebrow-line"></span> {{ project.category | escape }}</p>
+    <h1>{{ project.name | escape }}<span class="accent">.</span></h1>
+    <p class="lead">{{ project.summary | escape }}</p>
+    <div class="hero-actions"><a class="pill-button light" href="{{ site.data.cv.cv.repository_url }}/tree/main/projects/{{ project.slug }}" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a><a class="pill-button outline" href="#details">Explore details <span aria-hidden="true">↓</span></a></div>
   </div>
-  <div class="project-hero-number" aria-hidden="true">{{ page.number }}</div>
+  <div class="project-hero-number" aria-hidden="true">{{ project.number }}</div>
 </section>
 <div class="project-body page-pad" id="details">
-  <div class="project-intro reveal"><p class="eyebrow dark">THE PROJECT</p><div class="prose">{{ content }}</div></div>
-  <aside class="project-aside reveal"><p class="eyebrow dark">AT A GLANCE</p><dl><dt>Category</dt><dd>{{ page.category | escape }}</dd><dt>Technology</dt><dd>{{ page.technology | escape }}</dd><dt>Runtime</dt><dd>{{ page.runtime | escape }}</dd></dl><p class="honesty-note">These are prepared learning projects. Kajal should study and personalise the code before presenting her own contributions.</p></aside>
+  <div class="project-intro reveal"><p class="eyebrow dark">THE PROJECT</p><div class="prose">
+    <p>{{ project.intro | escape }}</p>
+    <h2>Structure</h2><ul>{% for item in project.files %}<li><code>{{ item.path | escape }}</code>: {{ item.purpose | escape }}</li>{% endfor %}</ul>
+    <h2>Architecture</h2><img class="technical-diagram" src="{{ '/assets/cv/diagrams/' | append: project.slug | append: '-structure.svg' | relative_url }}" alt="Architecture for {{ project.name | escape }}">
+    <h2>Data flow</h2><img class="technical-diagram" src="{{ '/assets/cv/diagrams/' | append: project.slug | append: '-flow.svg' | relative_url }}" alt="Data flow for {{ project.name | escape }}">
+    <h2>Implementation</h2><p>{{ project.detail | escape }}</p><p><strong>Example:</strong> {{ project.scenario | escape }}</p>
+    <h2>Features and limits</h2><p>{{ project.features | escape }}</p><p>{{ project.limits | escape }}</p>
+    <h2>Run locally</h2><p><code>{{ project.port | escape }}</code></p>
+  </div></div>
+  <aside class="project-aside reveal"><p class="eyebrow dark">AT A GLANCE</p><dl><dt>Category</dt><dd>{{ project.category | escape }}</dd><dt>Technology</dt><dd>{{ project.stack | escape }}</dd><dt>Runtime</dt><dd>{{ project.runtime | escape }}</dd></dl><p class="honesty-note">These are prepared learning projects. Kajal should study and personalise the code before presenting her own contributions.</p></aside>
 </div>
 <nav class="next-project page-pad" aria-label="Next project">
-  {% assign next_index = page.order | plus: 0 %}
-  {% if next_index < site.data.projects.size %}
-    {% assign next_item = site.data.projects[next_index] %}
-    <span class="eyebrow">UP NEXT</span><a href="{{ next_item.url | relative_url }}">{{ next_item.title }} <span aria-hidden="true">↗</span></a>
+  {% assign next_index = project.number | plus: 0 %}
+  {% if next_index < site.data.cv.projects.size %}
+    {% assign next_item = site.data.cv.projects[next_index] %}
+    <span class="eyebrow">UP NEXT</span><a href="{{ '/projects/' | append: next_item.slug | append: '/' | relative_url }}">{{ next_item.name | escape }} <span aria-hidden="true">↗</span></a>
   {% else %}
     <span class="eyebrow">KEEP EXPLORING</span><a href="{{ '/' | relative_url }}#projects">All projects <span aria-hidden="true">↗</span></a>
   {% endif %}

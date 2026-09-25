@@ -2,11 +2,12 @@
 
 Six independent, fully runnable projects and a two-section CV portfolio in HTML and PDF. The PDF has one CV page followed by six technical project pages with architecture and data flow images.
 
-The `docs/` folder is a Jekyll portfolio website for GitHub Pages, with a home hero, animated sidebar navigation, and a detail page for every project. See `docs/README.md` for publishing instructions. The static site describes the backend projects; it does not host their Python servers.
+The root `cv.yaml` is the editable source for the CV and the website. On every push or merge to `main`, GitHub Actions regenerates and deploys the Jekyll site from it. The `docs/` folder is a Jekyll portfolio website for GitHub Pages, with a home hero, animated sidebar navigation, and a detail page for every project. See `docs/README.md` for publishing instructions. The static site describes the backend projects; it does not host their Python servers.
 
 ## Contents
 
 ```text
+cv.yaml             Edit this file to update CV and Jekyll site
 cv/                 CV and six illustrated project pages, PDF and HTML
 docs/               Jekyll source for GitHub Pages
 projects/

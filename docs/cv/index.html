@@ -1,0 +1,33 @@
+---
+layout: default
+title: CV
+permalink: /cv/
+---
+<section class="project-hero page-pad">
+  <div class="project-hero-orb" aria-hidden="true"></div>
+  <a class="back-link" href="{{ '/' | relative_url }}">← Overview</a>
+  <div class="project-head reveal"><p class="eyebrow">CURRICULUM VITAE / PROJECT PORTFOLIO</p>
+    <h1>{{ site.data.cv.cv.name | escape }}<span class="accent">.</span></h1>
+    <p class="lead">{{ site.data.cv.cv.subtitle | escape }}</p>
+    <div class="hero-actions"><a class="pill-button light" href="{{ '/assets/cv/Kajal_Kale_CV.pdf' | relative_url }}">Download CV and project pages (PDF) ↗</a></div>
+  </div>
+</section>
+<section class="page-pad cv-info">
+  {% if site.data.cv.cv.draft %}<p class="cv-note"><strong>Draft:</strong> Contact and education details must be verified before applying.</p>{% endif %}
+  <h2>Profile</h2><p>{{ site.data.cv.cv.profile | escape }}</p>
+  <h2>Contact</h2>
+  {% assign contact = site.data.cv.cv.contact %}
+  {% if contact.email != empty %}<p>Email: <a href="mailto:{{ contact.email | escape }}">{{ contact.email | escape }}</a></p>{% endif %}
+  {% if contact.city != empty %}<p>City: {{ contact.city | escape }}</p>{% endif %}
+  {% if contact.github_url != empty %}<p><a href="{{ contact.github_url | escape }}">GitHub profile ↗</a></p>{% endif %}
+  {% if contact.email == empty and contact.city == empty and contact.github_url == empty %}<p>{{ site.data.cv.cv.contact_note | escape }}</p>{% endif %}
+  <h2>Education</h2><p><strong>{{ site.data.cv.cv.education.degree | escape }}</strong></p>
+  {% if site.data.cv.cv.education.institution != empty %}<p>{{ site.data.cv.cv.education.institution | escape }}</p>{% endif %}
+  {% if site.data.cv.cv.education.dates != empty %}<p>{{ site.data.cv.cv.education.dates | escape }}</p>{% endif %}
+  {% if site.data.cv.cv.education.institution == empty and site.data.cv.cv.education.dates == empty %}<p>{{ site.data.cv.cv.education.note | escape }}</p>{% endif %}
+  <h2>Learning projects</h2><ul>{% for project in site.data.cv.projects %}
+    <li><a href="{{ '/projects/' | append: project.slug | append: '/' | relative_url }}">{{ project.name | escape }}</a> — {{ project.summary | escape }}</li>
+  {% endfor %}</ul>
+  <p class="cv-note">{{ site.data.cv.cv.ownership_note | escape }}</p>
+  <p><a href="{{ '/assets/cv/Kajal_Kale_CV.pdf' | relative_url }}">Download the illustrated seven-page PDF ↗</a></p>
+</section>

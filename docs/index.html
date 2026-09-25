@@ -6,22 +6,22 @@ permalink: /
 ---
 <section class="home-hero page-pad" aria-labelledby="hero-heading">
   <div class="hero-grid" aria-hidden="true"></div><div class="hero-aura aura-one" aria-hidden="true"></div><div class="hero-aura aura-two" aria-hidden="true"></div>
-  <div class="home-hero-copy"><p class="eyebrow entrance"><span class="status-pulse"></span> DEVELOPER PORTFOLIO / LEARNING COLLECTION</p>
-    <h1 id="hero-heading" class="entrance">Curious minds<br>build <em>remarkable</em><br>things<span class="accent">.</span></h1>
-    <p class="lead entrance">A collection of hands-on web projects exploring design, backend development and local AI. Open a project to learn what it does and how to run it.</p>
-    <div class="hero-actions entrance"><a class="pill-button light" href="#projects">Explore projects <span aria-hidden="true">↘</span></a><a class="pill-button outline" href="{{ site.repository_url }}" target="_blank" rel="noopener noreferrer">Browse code <span aria-hidden="true">↗</span></a></div>
+  <div class="home-hero-copy"><p class="eyebrow entrance"><span class="status-pulse"></span> {{ site.data.cv.site.hero_kicker | escape }}</p>
+    <h1 id="hero-heading" class="entrance">{{ site.data.cv.site.hero_lead | escape }}<br>build <em>{{ site.data.cv.site.hero_accent | escape }}</em><br>{{ site.data.cv.site.hero_end | escape }}<span class="accent">.</span></h1>
+    <p class="lead entrance">{{ site.data.cv.site.hero_description | escape }}</p>
+    <div class="hero-actions entrance"><a class="pill-button light" href="#projects">Explore projects <span aria-hidden="true">↘</span></a><a class="pill-button outline" href="{{ site.data.cv.cv.repository_url }}" target="_blank" rel="noopener noreferrer">Browse code <span aria-hidden="true">↗</span></a><a class="pill-button outline" href="{{ '/cv/' | relative_url }}">View CV <span aria-hidden="true">↗</span></a></div>
   </div>
   <div class="hero-foot"><span>PORTFOLIO / 2026</span><span>SCROLL TO EXPLORE ↓</span></div>
 </section>
-<section id="projects" class="projects-section page-pad" aria-labelledby="projects-heading"><div class="section-top reveal"><div><p class="eyebrow dark">01 / SELECTED PROJECTS</p><h2 id="projects-heading">Built to explore<span class="accent">.</span></h2></div><p>Six runnable examples, from animated interfaces to data cleaning and local knowledge-base chat.</p></div>
+<section id="projects" class="projects-section page-pad" aria-labelledby="projects-heading"><div class="section-top reveal"><div><p class="eyebrow dark">01 / SELECTED PROJECTS</p><h2 id="projects-heading">Built to explore<span class="accent">.</span></h2></div><p>{{ site.data.cv.projects.size }} runnable examples, from animated interfaces to data cleaning and local knowledge-base chat.</p></div>
   <div class="cards">
-    {% for item in site.data.projects %}
-    <a class="project-card reveal card-{{ forloop.index }}" href="{{ item.url | relative_url }}" aria-label="Explore {{ item.title | escape }}">
-      <div class="card-top"><span class="card-index">{{ item.number }} / 06</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+    {% for item in site.data.cv.projects %}
+    <a class="project-card reveal card-{{ forloop.index }}" href="{{ item.slug | prepend: "/projects/" | append: "/" | relative_url }}" aria-label="Explore {{ item.name | escape }}">
+      <div class="card-top"><span class="card-index">{{ item.number }} / {{ site.data.cv.projects.size }}</span><span class="card-arrow" aria-hidden="true">↗</span></div>
       <div class="card-art" aria-hidden="true"><span>{{ item.icon }}</span></div>
-      <div class="card-bottom"><span class="card-category">{{ item.category }}</span><h3>{{ item.title }}</h3><p>{{ item.description }}</p></div>
+      <div class="card-bottom"><span class="card-category">{{ item.category }}</span><h3>{{ item.name }}</h3><p>{{ item.summary }}</p></div>
     </a>
     {% endfor %}
   </div>
 </section>
-<section class="approach-section page-pad"><div class="reveal"><p class="eyebrow">02 / ABOUT THIS COLLECTION</p><h2>Learn by making.<br><em>Understand by explaining.</em></h2></div><div class="approach-note reveal"><p>The code and demos are starting points for Kajal to study, adapt and explain in her own words. Every project includes a README with run instructions and the limits of the demonstration.</p><a href="{{ site.repository_url }}" target="_blank" rel="noopener noreferrer">Explore the repository <span aria-hidden="true">↗</span></a></div></section>
+<section class="approach-section page-pad"><div class="reveal"><p class="eyebrow">02 / ABOUT THIS COLLECTION</p><h2>Learn by making.<br><em>Understand by explaining.</em></h2></div><div class="approach-note reveal"><p>{{ site.data.cv.site.about | escape }}</p><a href="{{ site.data.cv.cv.repository_url }}" target="_blank" rel="noopener noreferrer">Explore the repository <span aria-hidden="true">↗</span></a></div></section>

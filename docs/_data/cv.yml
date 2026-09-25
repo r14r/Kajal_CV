@@ -1,0 +1,259 @@
+# EDIT THIS FILE to update both the CV (HTML/PDF) and the Jekyll website.
+# Do not claim project authorship until Kajal has studied and personalized the code.
+# Leave unverified contact and education fields empty.
+# Keep each project slug aligned with projects/<slug>/, and keep four structure nodes and five flow steps.
+schema_version: 1
+cv:
+  name: Kajal Raju Kale
+  subtitle: BCA student · Aspiring software developer
+  contact:
+    email: ''
+    city: ''
+    github_url: ''
+  contact_note: Contact details, college, graduation dates and public profile await Kajal's confirmation.
+  profile: BCA student preparing for an entry-level software development role. Studying practical frontend, backend,
+    database and data workflows through runnable learning projects.
+  education:
+    degree: Bachelor of Computer Applications (BCA)
+    institution: ''
+    dates: ''
+    note: 'College and attendance dates: to be confirmed by Kajal.'
+  ownership_note: These projects are prepared learning examples. Kajal should run, inspect and modify them, then
+    identify only her own contributions and skills she can explain. Add verified contact information, education
+    dates and a personal GitHub profile before applying.
+  draft: true
+  repository_url: https://github.com/r14r/Kajal_CV
+site:
+  title: Kajal | Developer Portfolio
+  description: Learning projects in web development, Django, FastAPI, Streamlit and local retrieval.
+  hero_kicker: DEVELOPER PORTFOLIO / LEARNING COLLECTION
+  hero_description: A collection of hands-on web projects exploring design, backend development, data and local
+    AI. Open a project to learn what it does and how to run it.
+  about: The code and demos are starting points for Kajal to study, adapt and explain in her own words. Every
+    project includes a README with run instructions and the limits of the demonstration.
+  hero_lead: Curious minds
+  hero_accent: remarkable
+  hero_end: things
+projects:
+- slug: animated-portfolio
+  name: Animated Portfolio
+  stack: HTML / CSS / JavaScript
+  port: Open index.html locally
+  intro: A responsive concept site for a fictional studio. Semantic sections, CSS artwork and lightweight JavaScript
+    create a navigable portfolio without a build step.
+  files:
+  - path: index.html
+    purpose: Semantic sections and navigation
+  - path: styles.css
+    purpose: Layout, artwork and animations
+  - path: script.js
+    purpose: Menu and scroll reveal behavior
+  structure:
+  - Browser
+  - HTML sections
+  - CSS artwork
+  - JavaScript
+  flow:
+  - Open index.html
+  - Browser builds the document
+  - CSS renders responsive layout
+  - JS handles menu and scroll
+  - Updated sections appear
+  features: Responsive navigation, accessible keyboard flow, reveal animations and reduced-motion styling.
+  detail: The browser loads three local files directly. HTML defines landmarks and section anchors; CSS handles
+    both the artwork and responsive breakpoints. JavaScript changes navigation state on small screens and reveals
+    sections as they enter the viewport. A reduced-motion media query removes unnecessary movement for users who
+    request it.
+  scenario: A visitor selects Work in the menu; the page moves to the case studies and the relevant content becomes
+    visible.
+  limits: Fictional content and demonstration contact address; replace these before public use.
+  number: '01'
+  icon: ✦
+  category: Frontend / Motion
+  summary: A responsive concept website with CSS artwork, mobile navigation and reduced-motion support.
+  runtime: Static HTML in browser
+- slug: django-htmx-taskboard
+  name: Django Task Board
+  stack: Django / HTMX / SQLite
+  port: python manage.py migrate; python manage.py runserver 127.0.0.1:8000
+  intro: A local task manager with server-rendered updates. Django owns validation and persistence; HTMX swaps
+    a task-list fragment after actions.
+  files:
+  - path: board/models.py
+    purpose: Task model and database fields
+  - path: board/forms.py
+    purpose: Input validation
+  - path: board/views.py
+    purpose: Requests and partial responses
+  - path: board/templates/
+    purpose: Page and task-list fragments
+  structure:
+  - Browser + HTMX
+  - Django views
+  - Forms + models
+  - SQLite
+  flow:
+  - Submit task action
+  - Django validates form + CSRF
+  - Model reads or writes SQLite
+  - View renders task-list fragment
+  - 'HTMX swaps #task-list'
+  features: Create, filter, complete and delete tasks; local HTMX asset; CSRF checks and escaped templates.
+  detail: The page submits actions to Django views. A Django form validates incoming fields before the model writes
+    tasks to SQLite. For HTMX requests, the view renders only the task-list template; the browser replaces that
+    fragment while leaving the rest of the page in place. Mutating requests include Django's CSRF token.
+  scenario: When a task is marked complete, Django updates its row and returns the refreshed list fragment without
+    a full page reload.
+  limits: Single-user development example. Needs authentication and production settings before deployment.
+  number: '02'
+  icon: ▦
+  category: Django / HTMX
+  summary: Server-rendered task management with partial updates, validation, SQLite and CSRF protection.
+  runtime: Local Django development server
+- slug: fastapi-rag-chat
+  name: Notebook Chat
+  stack: FastAPI / SQLite / lexical RAG / optional Ollama
+  port: uvicorn app:app --host 127.0.0.1 --port 8001
+  intro: A local knowledge-base chat that retrieves passages from Markdown or text notes and shows citations.
+    Optional Ollama generation uses retrieved context.
+  files:
+  - path: index.html + client.js
+    purpose: Chat and knowledge library UI
+  - path: app.py
+    purpose: API, chat and persistence
+  - path: retrieval.py
+    purpose: Chunking and TF-IDF ranking
+  - path: knowledge/
+    purpose: Bundled example notes
+  structure:
+  - Browser UI
+  - FastAPI
+  - Retrieval + SQLite
+  - Optional Ollama
+  flow:
+  - Add notes; split into chunks
+  - Ask a question
+  - Rank chunks using lexical TF-IDF
+  - Show cited excerpts or call Ollama
+  - Save answer and citations
+  features: Local document ingestion, passage ranking, saved conversations and citations; useful without a model.
+  detail: The backend splits notes into passages and scores them with lexical TF-IDF. A question selects the strongest
+    passages, which become cited excerpts in the fallback response. When configured, the backend sends those passages
+    to a local Ollama server for an optional answer. SQLite retains documents, conversations and citation records.
+  scenario: Ask a question about a stored note; the response points back to the passages used, so the reader can
+    inspect the evidence.
+  limits: Lexical search may miss synonyms. Model output needs verification; no login or multi-user isolation.
+  number: '03'
+  icon: ◈
+  category: FastAPI / RAG
+  summary: A local knowledge-base chat with source citations, retrieval and optional Ollama generation.
+  runtime: Local FastAPI server
+- slug: job-application-tracker
+  name: Job Application Tracker
+  stack: Streamlit / SQLite
+  port: streamlit run app.py --server.port 8501
+  intro: A local dashboard for managing applications and interview notes. Streamlit renders the interface and
+    SQLite retains records between sessions.
+  files:
+  - path: app.py
+    purpose: Forms, filters, tabs and metrics
+  - path: application_store.py
+    purpose: Validation and SQLite queries
+  - path: tests/test_storage.py
+    purpose: Temporary-database lifecycle check
+  structure:
+  - Browser
+  - Streamlit app
+  - Storage module
+  - SQLite
+  flow:
+  - Enter company, role and status
+  - Validate required fields
+  - Write parameterized SQLite query
+  - Re-read application list
+  - Filter, edit or delete in UI
+  features: Add, update, delete, search and status-filter records; metrics for interviews and offers.
+  detail: Streamlit forms gather a company, role, status and optional notes. The storage module trims and validates
+    input, then uses parameterized SQL to insert or update a row. On rerun, the app reads the database again and
+    computes metrics and filtered lists from those records. Each app has its own database file next to its source.
+  scenario: After an interview, change an application status to Interview and see the dashboard count update.
+  limits: Local single-user learning app. Database file should be backed up and kept out of Git.
+  number: '04'
+  icon: ↗
+  category: Streamlit / SQLite
+  summary: A Streamlit dashboard to record, search, filter and update job applications.
+  runtime: Local Streamlit app
+- slug: study-planner
+  name: Study Planner
+  stack: Streamlit / SQLite
+  port: streamlit run app.py --server.port 8502
+  intro: A local coursework planner with status counts. A small storage module encapsulates validation and persistent
+    task operations.
+  files:
+  - path: app.py
+    purpose: Task forms, filters and metrics
+  - path: planner_store.py
+    purpose: Task validation and SQLite
+  - path: tests/test_storage.py
+    purpose: Create, edit and delete checks
+  structure:
+  - Browser
+  - Streamlit app
+  - Storage module
+  - SQLite
+  flow:
+  - Enter title, course and status
+  - Validate required fields
+  - Save task in SQLite
+  - Re-read task list
+  - Search, edit or complete task
+  features: Create and edit coursework, track progress, search notes and filter by task status.
+  detail: The UI separates task review, creation and editing into tabs. The storage module requires a title, course
+    and supported status, and persists data using parameterized SQLite statements. Search checks task titles,
+    course names and notes; progress metrics are calculated from the current database rows after each interaction.
+  scenario: Add a coursework task, then change it from To do to Done and verify the progress count.
+  limits: Single-user local demo, without accounts or shared access.
+  number: '05'
+  icon: ◎
+  category: Streamlit / SQLite
+  summary: A Streamlit coursework planner with task editing, status filters and persistent storage.
+  runtime: Local Streamlit app
+- slug: data-cleaning-studio
+  name: Data Cleaning Studio
+  stack: Streamlit / Pandas / public APIs
+  port: streamlit run app.py --server.port 8503
+  intro: An interactive data workflow with a fictional offline sample, CSV upload and fixed public sources for
+    weather, currency rates and economic indicators.
+  files:
+  - path: app.py
+    purpose: Source selection and cleaning controls
+  - path: sources.py
+    purpose: Open-Meteo, ECB, World Bank clients
+  - path: cleaning.py
+    purpose: Pure Pandas transformations
+  - path: samples/
+    purpose: Offline demonstration dataset
+  structure:
+  - CSV or fixed API
+  - Streamlit app
+  - Pandas cleaning
+  - CSV export
+  flow:
+  - Load sample, upload or fetch
+  - Preview original table
+  - Select cleaning options
+  - Profile and chart transformed copy
+  - Download full cleaned CSV
+  features: Trim text, deduplicate, parse dates and numbers, handle missing values and inspect before/after metrics.
+  detail: A source adapter turns each supported API response or CSV input into a Pandas table. A pure cleaning
+    function copies the original table before applying selected transformations, so previewing alternatives does
+    not alter the source. Column profiles expose types, missing values and unique counts; the final table is serialized
+    to CSV for download.
+  scenario: Load the fictional sales sample, convert revenue to numbers, fill numeric medians and compare missing-cell
+    counts before exporting.
+  limits: Public APIs need internet access; previews show 500 rows while the download retains all rows.
+  number: '06'
+  icon: ◫
+  category: Streamlit / Data
+  summary: Clean CSVs, explore public weather, financial and economic data, and export results.
+  runtime: Local Streamlit app

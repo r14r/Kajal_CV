@@ -1,25 +1,19 @@
 # Jekyll portfolio website
 
-This folder is the GitHub Pages source for the `Kajal_CV` repository. It has a custom Jekyll layout, animated home hero, responsive sidebar, and six project detail pages. The site describes the projects as learning examples, with no invented work history or contact details.
+The repository root `cv.yaml` is the editable source for the CV, home page, project navigation and six detailed project pages. The site keeps its Jekyll layout and animation under `docs/`; `scripts/prepare_site.py` stages YAML into `docs/_data/cv.yml`, generated PDF and SVG diagrams into `docs/assets/cv/`, and project page entry files into `docs/projects/`. Edit `cv.yaml` rather than these generated copies.
 
-## Publish from GitHub Pages
+## Publish automatically
 
-In repository **Settings → Pages → Build and deployment**, select **Deploy from a branch**, then **main** and **/docs**, and save. The configured project URL is `https://r14r.github.io/Kajal_CV/`. Pages availability for a private repository depends on the account plan; check the Pages settings before changing repository visibility. Publishing a Pages site can make the website publicly accessible even when source code is private. Review the content before enabling it.
+In repository **Settings → Pages → Build and deployment**, select **GitHub Actions** as the source. `.github/workflows/pages.yml` runs on every push to `main`, including merges, and may also be started manually from the Actions tab. It regenerates the CV and data, builds Jekyll and deploys the Pages artifact. A push to another branch does not replace the live website. The project URL is `https://r14r.github.io/Kajal_CV/` once Pages is enabled. Availability for private repositories depends on the account plan; a published Pages site can be public even if its source repository is private. Review the draft CV before enabling public publishing.
 
-## Edit
+## Edit and preview
 
-- `_config.yml`: site URL, `baseurl` and metadata.
-- `_data/projects.yml`: sidebar links and project cards.
-- `_layouts/default.html`: shared navigation and footer.
-- `_layouts/project.html`: common project detail view.
-- `index.html`: hero and overview.
-- `projects/*.md`: detail pages.
-- `assets/css/site.css` and `assets/js/site.js`: styling, responsive navigation and animation.
+Update `cv.yaml` and regenerate as described in `cv/README.md`. For a local website preview, after installing Ruby/Jekyll run:
 
-Use `relative_url` for internal links, so the site works at `/Kajal_CV/`. If the repository name changes, update `baseurl`.
+```bash
+python cv/generate_cv.py
+python scripts/prepare_site.py
+jekyll serve --source docs --baseurl /Kajal_CV
+```
 
-## Local preview
-
-With Ruby and Jekyll installed, run `jekyll serve --source docs --baseurl /Kajal_CV` from the repository root and open the URL printed by Jekyll. The site does not require third-party themes or plugins. Optional Google Fonts fall back to system fonts offline.
-
-The GitHub Pages site is static: Streamlit, Django, FastAPI and Ollama projects are documented here, but their backends must be run separately as described in their own READMEs.
+The Jekyll site is static: the Streamlit, Django, FastAPI and Ollama apps run separately as described in their own READMEs. Site navigation and internal links use `relative_url` to support the `/Kajal_CV/` base path.

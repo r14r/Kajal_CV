@@ -1,12 +1,28 @@
-# Kajal CV and project technical portfolio (draft)
+# Editable CV and project portfolio
 
-The deliverable has two sections:
+Edit **`cv.yaml` at the repository root**. It is the only source of CV text, project descriptions, architecture nodes and data flow steps used for the seven-page PDF, the HTML CV and the Jekyll website. The initial content is draft sample data. Leave unverified contact and education fields empty; only record Kajal's own, demonstrable project contributions.
 
-1. Page 1: a concise CV with education, profile and a project index.
-2. Pages 2-7: one detailed page per runnable project with the structure, architecture, data flow, implementation, limitations and run instructions.
+## YAML structure
 
-`Kajal_Kale_CV.pdf` is the printable seven-page A4 document. `Kajal_Kale_CV.html` is the responsive website version with jump links and print styling. The `diagrams/` folder contains twelve reusable SVG images, one architecture image and one data flow image per project. Keep this folder alongside the HTML file so the images load. The PDF contains vector diagrams directly and works on its own.
+- `schema_version`: keep `1`.
+- `cv`: name, subtitle, `contact` (email, city and GitHub profile), profile, `education` (degree, institution and dates), notes, draft flag and repository URL.
+- `site`: page title, descriptions and hero and about text.
+- `projects`: six entries with a stable slug, navigation information, summary, detailed implementation, file list, four architecture nodes and five data flow steps.
 
-To update descriptions, change the `PROJECTS` entries in `generate_cv.py` and run `python cv/generate_cv.py` from the repository root. Python needs `reportlab` installed for PDF generation. The generated HTML, PDF and diagrams should be updated together.
+`slug` must match its folder under `projects/`. The current PDF design has a page per project and requires six projects, up to four file descriptions per project, four architecture nodes and five flow steps. The generator validates these constraints and stops on invalid YAML. Keep text concise enough for an A4 page. To expand the layout or add projects, update the generator and its validation.
 
-Before applying, Kajal must add her own email, city, college, dates, verified skills and personal GitHub profile. The DRAFT notice should remain until verified. These are prepared learning examples, not claims of employment or independent authorship. She should run and modify projects, then describe only the parts she personally contributed and can explain.
+## Build locally
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r cv/requirements.txt
+python cv/generate_cv.py
+python scripts/prepare_site.py
+```
+
+This updates `cv/Kajal_Kale_CV.html`, `cv/Kajal_Kale_CV.pdf`, all twelve SVGs under `cv/diagrams/`, and the Jekyll data, pages and assets under `docs/`. For the website, build with `jekyll build --source docs --destination _site` or follow `docs/README.md`.
+
+On every push to `main`, `.github/workflows/pages.yml` regenerates these files from `cv.yaml`, builds the Jekyll site and deploys it to GitHub Pages. A merge into `main` is a push and triggers the same workflow. GitHub Pages must be configured with **GitHub Actions** as the source. The PDF may be downloaded independently; the HTML needs its sibling `diagrams/` folder.
+
+These are prepared learning examples, not claims of employment or independent authorship. Kajal should inspect, run and modify them and describe only her own contributions.

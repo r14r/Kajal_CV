@@ -9,7 +9,7 @@ layout: default
     <p class="eyebrow">PROJECT {{ project.number }} <span class="eyebrow-line"></span> {{ project.category | escape }}</p>
     <h1>{{ project.name | escape }}<span class="accent">.</span></h1>
     <p class="lead">{{ project.summary | escape }}</p>
-    <div class="hero-actions"><a class="pill-button light" href="{{ site.data.cv.cv.repository_url }}/tree/main/projects/{{ project.slug }}" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a><a class="pill-button outline" href="#details">Explore details <span aria-hidden="true">↓</span></a></div>
+    <div class="hero-actions"><a class="pill-button light" href="{{ site.data.cv.cv.repository_url }}/tree/main/projects/{{ project.slug }}" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a>{% if project.demo_url and project.demo_url != '' %}<a class="pill-button outline" href="{{ project.demo_url | escape }}" target="_blank" rel="noopener noreferrer">Open Streamlit app <span aria-hidden="true">↗</span></a>{% else %}<a class="pill-button outline" href="#details">Explore details <span aria-hidden="true">↓</span></a>{% endif %}</div>
   </div>
   <div class="project-hero-number" aria-hidden="true">{{ project.number }}</div>
 </section>
@@ -22,6 +22,7 @@ layout: default
     <h2>Implementation</h2><p>{{ project.detail | escape }}</p><p><strong>Example:</strong> {{ project.scenario | escape }}</p>
     <h2>Features and limits</h2><p>{{ project.features | escape }}</p><p>{{ project.limits | escape }}</p>
     <h2>Run locally</h2><p><code>{{ project.port | escape }}</code></p>
+    <p><strong>Streamlit Cloud entry point:</strong> <code>{{ project.streamlit_entrypoint | escape }}</code></p>
   </div></div>
   <aside class="project-aside reveal"><p class="eyebrow dark">AT A GLANCE</p><dl><dt>Category</dt><dd>{{ project.category | escape }}</dd><dt>Technology</dt><dd>{{ project.stack | escape }}</dd><dt>Runtime</dt><dd>{{ project.runtime | escape }}</dd></dl><p class="honesty-note">These are prepared learning projects. Kajal should study and personalise the code before presenting her own contributions.</p></aside>
 </div>

@@ -2,6 +2,10 @@
 
 A locally hosted chat interface that retrieves relevant passages from Markdown or text notes. It stores knowledge, conversations, and citations in SQLite. It works without a language model: the default answer is an explicitly labelled collection of matching excerpts. Set `OLLAMA_MODEL` to enable optional, grounded answer generation with a local Ollama installation.
 
+## Streamlit Community Cloud edition
+
+Select `main` and `projects/fastapi-rag-chat/streamlit_app.py` as the entry point, or install `requirements.txt` and run `streamlit run streamlit_app.py` locally. This edition reuses `retrieval.py` and the bundled notes. Visitors can paste or upload text, ask questions, inspect citations and clear the conversation. Each visitor's notes and chat are session-scoped and disappear on restart. This edition does not run Ollama or generate answers; it labels retrieved source excerpts clearly. Do not upload sensitive notes to a public demonstration.
+
 ## Run (Python 3.10+)
 
 ```bash

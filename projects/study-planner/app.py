@@ -1,14 +1,19 @@
 """Run with streamlit run app.py."""
 from pathlib import Path
+import tempfile
+import uuid
 
 import streamlit as st
 from planner_store import STATUSES, delete, list_items, save
 
-DB_PATH = str(Path(__file__).with_name("data.sqlite3"))
+# Give each browser session its own temporary database on shared cloud instances.
+if "planner_db_path" not in st.session_state:
+    st.session_state.planner_db_path = str(Path(tempfile.gettempdir()) / f"kajal-planner-{uuid.uuid4().hex}.sqlite3")
+DB_PATH = st.session_state.planner_db_path
 
 st.set_page_config(page_title="Study planner", page_icon="◎", layout="wide")
 st.title("Study planner")
-st.caption("A local dashboard for coursework and progress.")
+st.caption("Practice with fictional tasks. Data stays in this browser session and can disappear when the server restarts.")
 items = list_items(DB_PATH)
 c1, c2, c3 = st.columns(3)
 c1.metric("Tasks", len(items))

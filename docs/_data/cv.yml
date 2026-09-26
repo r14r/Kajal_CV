@@ -1,4 +1,5 @@
 # EDIT THIS FILE to update both the CV (HTML/PDF) and the Jekyll website.
+# Fill demo_url after each Streamlit Community Cloud deployment.
 # Do not claim project authorship until Kajal has studied and personalized the code.
 # Leave unverified contact and education fields empty.
 # Keep each project slug aligned with projects/<slug>/, and keep four structure nodes and five flow steps.
@@ -11,24 +12,24 @@ cv:
     city: ''
     github_url: ''
   contact_note: Contact details, college, graduation dates and public profile await Kajal's confirmation.
-  profile: BCA student preparing for an entry-level software development role. Studying practical frontend, backend,
-    database and data workflows through runnable learning projects.
+  profile: BCA student preparing for an entry-level software development role. Studying practical frontend,
+    backend, database and data workflows through runnable learning projects.
   education:
     degree: Bachelor of Computer Applications (BCA)
     institution: ''
     dates: ''
     note: 'College and attendance dates: to be confirmed by Kajal.'
-  ownership_note: These projects are prepared learning examples. Kajal should run, inspect and modify them, then
-    identify only her own contributions and skills she can explain. Add verified contact information, education
-    dates and a personal GitHub profile before applying.
+  ownership_note: These projects are prepared learning examples. Kajal should run, inspect and modify them,
+    then identify only her own contributions and skills she can explain. Add verified contact information,
+    education dates and a personal GitHub profile before applying.
   draft: true
   repository_url: https://github.com/r14r/Kajal_CV
 site:
   title: Kajal | Developer Portfolio
   description: Learning projects in web development, Django, FastAPI, Streamlit and local retrieval.
   hero_kicker: DEVELOPER PORTFOLIO / LEARNING COLLECTION
-  hero_description: A collection of hands-on web projects exploring design, backend development, data and local
-    AI. Open a project to learn what it does and how to run it.
+  hero_description: A collection of hands-on web projects exploring design, backend development, data and
+    local AI. Open a project to learn what it does and how to run it.
   about: The code and demos are starting points for Kajal to study, adapt and explain in her own words. Every
     project includes a README with run instructions and the limits of the demonstration.
   hero_lead: Curious minds
@@ -37,123 +38,128 @@ site:
 projects:
 - slug: animated-portfolio
   name: Animated Portfolio
-  stack: HTML / CSS / JavaScript
-  port: Open index.html locally
-  intro: A responsive concept site for a fictional studio. Semantic sections, CSS artwork and lightweight JavaScript
-    create a navigable portfolio without a build step.
+  stack: Streamlit / HTML / CSS
+  port: streamlit run streamlit_app.py
+  intro: A Streamlit Cloud adaptation of the fictional Northstar studio site. Sidebar navigation switches
+    sections; CSS creates animated hero artwork and responsive case-study cards. The original static HTML/CSS/JS
+    site remains in the folder for comparison.
   files:
-  - path: index.html
-    purpose: Semantic sections and navigation
-  - path: styles.css
-    purpose: Layout, artwork and animations
+  - path: streamlit_app.py
+    purpose: Streamlit navigation, sections and CSS artwork
+  - path: index.html + styles.css
+    purpose: Original standalone site
   - path: script.js
-    purpose: Menu and scroll reveal behavior
+    purpose: Original mobile navigation and scroll reveals
   structure:
-  - Browser
-  - HTML sections
-  - CSS artwork
-  - JavaScript
+  - Browser session
+  - Streamlit widgets
+  - HTML + CSS styling
+  - Visible section
   flow:
-  - Open index.html
-  - Browser builds the document
-  - CSS renders responsive layout
-  - JS handles menu and scroll
-  - Updated sections appear
-  features: Responsive navigation, accessible keyboard flow, reveal animations and reduced-motion styling.
-  detail: The browser loads three local files directly. HTML defines landmarks and section anchors; CSS handles
-    both the artwork and responsive breakpoints. JavaScript changes navigation state on small screens and reveals
-    sections as they enter the viewport. A reduced-motion media query removes unnecessary movement for users who
-    request it.
-  scenario: A visitor selects Work in the menu; the page moves to the case studies and the relevant content becomes
-    visible.
-  limits: Fictional content and demonstration contact address; replace these before public use.
+  - Open the Streamlit app
+  - Select a sidebar section
+  - Streamlit reruns the script
+  - CSS renders motion and cards
+  - Selected content appears
+  features: Animated hero, responsive navigation, case-study cards and reduced-motion support.
+  detail: Streamlit maintains the selected navigation option as widget state. Python decides which section
+    to render, and a scoped CSS stylesheet handles the hero, artwork and card motion. The HTML/CSS/JavaScript
+    original is retained as a separate exercise to compare browser-native and Streamlit approaches.
+  scenario: Select Work in the sidebar to reveal three fictional portfolio cards.
+  limits: Fictional content. This Streamlit edition is an adaptation; original static site interactions differ.
   number: '01'
   icon: ✦
   category: Frontend / Motion
-  summary: A responsive concept website with CSS artwork, mobile navigation and reduced-motion support.
-  runtime: Static HTML in browser
+  summary: An animated Streamlit studio portfolio with navigation, responsive cards and reduced-motion styling.
+  runtime: Streamlit Community Cloud or local Streamlit
+  streamlit_entrypoint: projects/animated-portfolio/streamlit_app.py
+  demo_url: ''
 - slug: django-htmx-taskboard
   name: Django Task Board
-  stack: Django / HTMX / SQLite
-  port: python manage.py migrate; python manage.py runserver 127.0.0.1:8000
-  intro: A local task manager with server-rendered updates. Django owns validation and persistence; HTMX swaps
-    a task-list fragment after actions.
+  stack: Streamlit / session state (Django / HTMX original)
+  port: streamlit run streamlit_app.py
+  intro: A deployable Streamlit task board that creates, filters, completes and deletes tasks in isolated
+    session state. The original Django/HTMX implementation remains available for local backend study.
   files:
-  - path: board/models.py
-    purpose: Task model and database fields
-  - path: board/forms.py
-    purpose: Input validation
+  - path: streamlit_app.py
+    purpose: Streamlit task interface and session state
+  - path: board/models.py + forms.py
+    purpose: Original Django data model and validation
   - path: board/views.py
-    purpose: Requests and partial responses
-  - path: board/templates/
-    purpose: Page and task-list fragments
+    purpose: Original HTMX request and fragment handling
   structure:
-  - Browser + HTMX
-  - Django views
-  - Forms + models
-  - SQLite
+  - Browser session
+  - Streamlit controls
+  - Session task list
+  - Filtered board
   flow:
-  - Submit task action
-  - Django validates form + CSRF
-  - Model reads or writes SQLite
-  - View renders task-list fragment
-  - 'HTMX swaps #task-list'
-  features: Create, filter, complete and delete tasks; local HTMX asset; CSRF checks and escaped templates.
-  detail: The page submits actions to Django views. A Django form validates incoming fields before the model writes
-    tasks to SQLite. For HTMX requests, the view renders only the task-list template; the browser replaces that
-    fragment while leaving the rest of the page in place. Mutating requests include Django's CSRF token.
-  scenario: When a task is marked complete, Django updates its row and returns the refreshed list fragment without
-    a full page reload.
-  limits: Single-user development example. Needs authentication and production settings before deployment.
+  - Enter and validate a task
+  - Append to session task list
+  - Filter or change task state
+  - Streamlit reruns the page
+  - Updated board appears
+  features: Create, filter, complete, reopen and delete tasks; isolated browser-session data.
+  detail: The Cloud app validates task input and stores each task in Streamlit session state, so users do
+    not see one another’s entries. Actions mutate the current session and rerun the page. The Django/HTMX
+    project still demonstrates server-rendered partial updates, models and CSRF separately when run locally.
+  scenario: Add a task, mark it done and use the Done filter to inspect it.
+  limits: Cloud tasks disappear when the session or app restarts. The Streamlit edition does not expose Django
+    or HTMX at runtime.
   number: '02'
   icon: ▦
   category: Django / HTMX
-  summary: Server-rendered task management with partial updates, validation, SQLite and CSRF protection.
-  runtime: Local Django development server
+  summary: A session-scoped Streamlit task board with creation, filtering and progress actions.
+  runtime: Streamlit Community Cloud or local Streamlit
+  streamlit_entrypoint: projects/django-htmx-taskboard/streamlit_app.py
+  demo_url: ''
 - slug: fastapi-rag-chat
   name: Notebook Chat
-  stack: FastAPI / SQLite / lexical RAG / optional Ollama
-  port: uvicorn app:app --host 127.0.0.1 --port 8001
-  intro: A local knowledge-base chat that retrieves passages from Markdown or text notes and shows citations.
-    Optional Ollama generation uses retrieved context.
+  stack: Streamlit / lexical RAG (FastAPI original)
+  port: streamlit run streamlit_app.py
+  intro: A Streamlit chat demo that splits notes into passages, ranks them with lexical retrieval and displays
+    matching excerpts with source citations. The original FastAPI/SQLite/Ollama app remains for local study.
   files:
-  - path: index.html + client.js
-    purpose: Chat and knowledge library UI
-  - path: app.py
-    purpose: API, chat and persistence
+  - path: streamlit_app.py
+    purpose: Chat, knowledge library and session state
   - path: retrieval.py
-    purpose: Chunking and TF-IDF ranking
+    purpose: Chunking and lexical TF-IDF ranking
   - path: knowledge/
-    purpose: Bundled example notes
+    purpose: Bundled demonstration notes
+  - path: app.py
+    purpose: Original local FastAPI and SQLite implementation
   structure:
-  - Browser UI
-  - FastAPI
-  - Retrieval + SQLite
-  - Optional Ollama
+  - Browser session
+  - Streamlit chat
+  - TF-IDF retriever
+  - Cited passages
   flow:
-  - Add notes; split into chunks
-  - Ask a question
-  - Rank chunks using lexical TF-IDF
-  - Show cited excerpts or call Ollama
-  - Save answer and citations
-  features: Local document ingestion, passage ranking, saved conversations and citations; useful without a model.
-  detail: The backend splits notes into passages and scores them with lexical TF-IDF. A question selects the strongest
-    passages, which become cited excerpts in the fallback response. When configured, the backend sends those passages
-    to a local Ollama server for an optional answer. SQLite retains documents, conversations and citation records.
-  scenario: Ask a question about a stored note; the response points back to the passages used, so the reader can
-    inspect the evidence.
-  limits: Lexical search may miss synonyms. Model output needs verification; no login or multi-user isolation.
+  - Add or load example notes
+  - Split notes into passages
+  - Ask question; rank passages
+  - Display cited excerpts
+  - Save chat in session
+  features: Upload or paste text notes, delete documents, ask questions, inspect ranked citations and clear
+    chat.
+  detail: The Streamlit app seeds example Markdown notes, stores additions per browser session and chunks
+    them using the shared retrieval module. A question ranks passages by lexical TF-IDF and presents matching
+    excerpts with citations; it clearly labels them as retrieved text, not generated answers. The separate
+    local FastAPI app supports optional Ollama.
+  scenario: Ask about a bundled note and expand Retrieved sources to inspect the passages.
+  limits: No language-model generation in the Cloud edition. Lexical matching can miss synonyms; session notes
+    and chat disappear on restart. Avoid sensitive uploads.
   number: '03'
   icon: ◈
   category: FastAPI / RAG
-  summary: A local knowledge-base chat with source citations, retrieval and optional Ollama generation.
-  runtime: Local FastAPI server
+  summary: A Streamlit knowledge chat with session-scoped notes and cited lexical retrieval.
+  runtime: Streamlit Community Cloud or local Streamlit
+  streamlit_entrypoint: projects/fastapi-rag-chat/streamlit_app.py
+  demo_url: ''
 - slug: job-application-tracker
   name: Job Application Tracker
   stack: Streamlit / SQLite
   port: streamlit run app.py --server.port 8501
-  intro: A local dashboard for managing applications and interview notes. Streamlit renders the interface and
-    SQLite retains records between sessions.
+  intro: A Streamlit dashboard for fictional job applications. It uses a separate temporary SQLite database
+    for each browser session on the shared Cloud instance.
   files:
   - path: app.py
     purpose: Forms, filters, tabs and metrics
@@ -162,33 +168,36 @@ projects:
   - path: tests/test_storage.py
     purpose: Temporary-database lifecycle check
   structure:
-  - Browser
+  - Browser session
   - Streamlit app
   - Storage module
-  - SQLite
+  - Session SQLite
   flow:
   - Enter company, role and status
   - Validate required fields
-  - Write parameterized SQLite query
+  - Write to session SQLite file
   - Re-read application list
   - Filter, edit or delete in UI
   features: Add, update, delete, search and status-filter records; metrics for interviews and offers.
-  detail: Streamlit forms gather a company, role, status and optional notes. The storage module trims and validates
-    input, then uses parameterized SQL to insert or update a row. On rerun, the app reads the database again and
-    computes metrics and filtered lists from those records. Each app has its own database file next to its source.
+  detail: Streamlit forms gather company, role, status and notes. The storage module validates input and uses
+    parameterized SQL to update a per-session temporary SQLite file. After each action, the app reruns, reads
+    the current session’s data and recalculates metrics. Other visitors use separate database paths.
   scenario: After an interview, change an application status to Interview and see the dashboard count update.
-  limits: Local single-user learning app. Database file should be backed up and kept out of Git.
+  limits: Session data are temporary and may disappear when the server restarts. Use fictional entries; this
+    is not a durable job-search database.
   number: '04'
   icon: ↗
   category: Streamlit / SQLite
   summary: A Streamlit dashboard to record, search, filter and update job applications.
-  runtime: Local Streamlit app
+  runtime: Streamlit Community Cloud or local Streamlit
+  streamlit_entrypoint: projects/job-application-tracker/app.py
+  demo_url: ''
 - slug: study-planner
   name: Study Planner
   stack: Streamlit / SQLite
   port: streamlit run app.py --server.port 8502
-  intro: A local coursework planner with status counts. A small storage module encapsulates validation and persistent
-    task operations.
+  intro: A Streamlit coursework planner. A session-specific temporary SQLite file retains tasks during a browser
+    session without exposing them to other visitors.
   files:
   - path: app.py
     purpose: Task forms, filters and metrics
@@ -197,33 +206,35 @@ projects:
   - path: tests/test_storage.py
     purpose: Create, edit and delete checks
   structure:
-  - Browser
+  - Browser session
   - Streamlit app
   - Storage module
-  - SQLite
+  - Session SQLite
   flow:
   - Enter title, course and status
   - Validate required fields
-  - Save task in SQLite
+  - Save in session SQLite file
   - Re-read task list
   - Search, edit or complete task
   features: Create and edit coursework, track progress, search notes and filter by task status.
-  detail: The UI separates task review, creation and editing into tabs. The storage module requires a title, course
-    and supported status, and persists data using parameterized SQLite statements. Search checks task titles,
-    course names and notes; progress metrics are calculated from the current database rows after each interaction.
+  detail: The UI separates review, creation and editing into tabs. The storage module validates fields and
+    uses parameterized SQL. Every session receives a distinct temporary SQLite path, and metrics are recalculated
+    after each interaction.
   scenario: Add a coursework task, then change it from To do to Done and verify the progress count.
-  limits: Single-user local demo, without accounts or shared access.
+  limits: Session data are temporary and may disappear on restart; use fictional coursework tasks.
   number: '05'
   icon: ◎
   category: Streamlit / SQLite
   summary: A Streamlit coursework planner with task editing, status filters and persistent storage.
-  runtime: Local Streamlit app
+  runtime: Streamlit Community Cloud or local Streamlit
+  streamlit_entrypoint: projects/study-planner/app.py
+  demo_url: ''
 - slug: data-cleaning-studio
   name: Data Cleaning Studio
   stack: Streamlit / Pandas / public APIs
   port: streamlit run app.py --server.port 8503
-  intro: An interactive data workflow with a fictional offline sample, CSV upload and fixed public sources for
-    weather, currency rates and economic indicators.
+  intro: An interactive data workflow with a fictional offline sample, CSV upload and fixed public sources
+    for weather, currency rates and economic indicators.
   files:
   - path: app.py
     purpose: Source selection and cleaning controls
@@ -244,16 +255,20 @@ projects:
   - Select cleaning options
   - Profile and chart transformed copy
   - Download full cleaned CSV
-  features: Trim text, deduplicate, parse dates and numbers, handle missing values and inspect before/after metrics.
+  features: Trim text, deduplicate, parse dates and numbers, handle missing values and inspect before/after
+    metrics.
   detail: A source adapter turns each supported API response or CSV input into a Pandas table. A pure cleaning
-    function copies the original table before applying selected transformations, so previewing alternatives does
-    not alter the source. Column profiles expose types, missing values and unique counts; the final table is serialized
-    to CSV for download.
-  scenario: Load the fictional sales sample, convert revenue to numbers, fill numeric medians and compare missing-cell
-    counts before exporting.
-  limits: Public APIs need internet access; previews show 500 rows while the download retains all rows.
+    function copies the original table before applying selected transformations, so previewing alternatives
+    does not alter the source. Column profiles expose types, missing values and unique counts; the final table
+    is serialized to CSV for download.
+  scenario: Load the fictional sales sample, convert revenue to numbers, fill numeric medians and compare
+    missing-cell counts before exporting.
+  limits: Public APIs need network access and may rate limit. Uploaded data remains in the session; previews
+    show 500 rows while downloads retain all rows. Avoid sensitive uploads.
   number: '06'
   icon: ◫
   category: Streamlit / Data
   summary: Clean CSVs, explore public weather, financial and economic data, and export results.
-  runtime: Local Streamlit app
+  runtime: Streamlit Community Cloud or local Streamlit
+  streamlit_entrypoint: projects/data-cleaning-studio/app.py
+  demo_url: ''

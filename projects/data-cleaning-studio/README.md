@@ -16,6 +16,8 @@ streamlit run app.py --server.address 127.0.0.1 --server.port 8503
 
 Open http://127.0.0.1:8503/. Windows: activate with `.venv\Scripts\activate`. Run `python -m unittest discover -s tests -v` from this directory for transform and response checks.
 
+For Streamlit Community Cloud, select `main` and `projects/data-cleaning-studio/app.py` as the entry point. The sample works offline. Live sources require the Cloud server to reach their APIs. Uploads stay in the app session; use local execution for sensitive files.
+
 ## Public data and provenance
 
 | Category | Provider / documentation | Data retrieved |

@@ -1,6 +1,6 @@
 # Study planner · Streamlit
 
-A single-user local dashboard for coursework. Add, edit, filter, search and delete tasks, and see progress counts. It persists to a local SQLite database. No account or internet access is required after installation.
+A dashboard for fictional coursework. Add, edit, filter, search and delete tasks, and see progress counts. Each browser session uses its own temporary SQLite file; data can disappear on a server restart. No account or secrets are required.
 
 ## Run
 
@@ -14,4 +14,4 @@ pip install -r requirements.txt
 streamlit run app.py --server.address 127.0.0.1 --server.port 8502
 ```
 
-Open http://127.0.0.1:8502/. Windows: activate with `.venv\Scripts\activate`. For checks, run `python -m unittest discover -s tests -v` from this directory. Storage is in `data.sqlite3` beside the app; back it up to retain your records. The delete button deletes the selected task. This is a local learning app without sign-in or multi-user access.
+Open http://127.0.0.1:8502/. Windows: activate with `.venv\Scripts\activate`. For checks, run `python -m unittest discover -s tests -v` from this directory. For Community Cloud select `main` and `projects/study-planner/app.py`. The delete button deletes the selected task. Session SQLite files are temporary and are not durable storage.

@@ -1,6 +1,6 @@
 # Kajal developer portfolio - learning package
 
-Six independent, fully runnable projects and a two-section CV portfolio in HTML and PDF. The PDF has one CV page followed by six technical project pages with architecture and data flow images.
+Six independent, runnable Streamlit projects and a two-section CV portfolio in HTML and PDF. The PDF has one CV page followed by six technical project pages with architecture and data flow images. The original Django/HTMX, FastAPI and plain HTML implementations are retained as separate learning references.
 
 The root `cv.yaml` is the editable source for the CV and the website. On every push or merge to `main`, GitHub Actions regenerates and deploys the Jekyll site from it. The `docs/` folder is a Jekyll portfolio website for GitHub Pages, with a home hero, animated sidebar navigation, and a detail page for every project. See `docs/README.md` for publishing instructions. The static site describes the backend projects; it does not host their Python servers.
 
@@ -19,7 +19,18 @@ projects/
   data-cleaning-studio/      Streamlit + Pandas + CSV and public APIs
 ```
 
-Each project's README gives exact run and verification commands. The two trackers use Streamlit and SQLite and run on ports 8501 and 8502. The data cleaning studio uses Streamlit and Pandas on port 8503. The animated site opens directly as an HTML file. The Django board and FastAPI chat use the dependencies listed in their own `requirements.txt` files and run on ports 8000 and 8001.
+Each project's README gives exact run and verification commands. To deploy on Streamlit Community Cloud, connect this GitHub repository and choose `main` with one of these entry points. Create six Cloud apps if you want six separate URLs. The dependency file in each app's folder is detected automatically; select Python 3.12. After deployment, put each actual URL into its `demo_url` in `cv.yaml` to display a launch button on the Jekyll project page.
+
+| Project | Streamlit Cloud entry point |
+| --- | --- |
+| Animated portfolio | `projects/animated-portfolio/streamlit_app.py` |
+| Django task board adaptation | `projects/django-htmx-taskboard/streamlit_app.py` |
+| RAG chat adaptation | `projects/fastapi-rag-chat/streamlit_app.py` |
+| Job application tracker | `projects/job-application-tracker/app.py` |
+| Study planner | `projects/study-planner/app.py` |
+| Data cleaning studio | `projects/data-cleaning-studio/app.py` |
+
+The task board and chat use per-browser-session memory. The trackers use separate temporary SQLite files per browser session. Cloud data can disappear on restart and is intended for fictional demonstrations. Uploaded notes and CSVs are processed in the app session; avoid sensitive data on public demos. The RAG Cloud app returns cited retrieved excerpts without a language model. No API keys are needed.
 
 ## Important before applying
 

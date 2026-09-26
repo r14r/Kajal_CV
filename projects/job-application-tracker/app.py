@@ -1,14 +1,19 @@
 """Run with streamlit run app.py."""
 from pathlib import Path
+import tempfile
+import uuid
 
 import streamlit as st
 from application_store import STATUSES, delete, list_items, save
 
-DB_PATH = str(Path(__file__).with_name("data.sqlite3"))
+# Give each browser session its own temporary database on shared cloud instances.
+if "application_db_path" not in st.session_state:
+    st.session_state.application_db_path = str(Path(tempfile.gettempdir()) / f"kajal-applications-{uuid.uuid4().hex}.sqlite3")
+DB_PATH = st.session_state.application_db_path
 
 st.set_page_config(page_title="Application tracker", page_icon="↗", layout="wide")
 st.title("Job application tracker")
-st.caption("Keep a private, local record of applications and interview notes.")
+st.caption("Practice with fictional entries. Data stays in this browser session and can disappear when the server restarts.")
 items = list_items(DB_PATH)
 c1, c2, c3 = st.columns(3)
 c1.metric("Applications", len(items))

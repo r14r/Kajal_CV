@@ -4,7 +4,9 @@ A responsive, multi-section concept website built with semantic HTML, CSS artwor
 
 ## Run
 
-Open `index.html` directly in a browser. No build step, accounts or server are required. The Google Fonts request is optional; local system fonts provide a fallback when offline.
+For the Streamlit edition, install `requirements.txt` and run `streamlit run streamlit_app.py`. On Community Cloud select `main` and `projects/animated-portfolio/streamlit_app.py` as the entry point. It has a sidebar, animated hero and project cards. The Google Fonts request is optional; system fonts provide a fallback.
+
+The original browser edition still opens from `index.html` directly. No build step, accounts or server are required for that version.
 
 ## Explore
 

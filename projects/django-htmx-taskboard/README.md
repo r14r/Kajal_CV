@@ -2,6 +2,10 @@
 
 A complete local task board with a Django/SQLite backend and server-rendered HTMX interactions. The HTMX JavaScript file is bundled in `board/static/board/`, so the app needs no CDN at runtime.
 
+## Streamlit Community Cloud edition
+
+Select `main` and `projects/django-htmx-taskboard/streamlit_app.py` as the entry point, or run `streamlit run streamlit_app.py` locally after installing `requirements.txt`. This version offers create, filter, toggle and delete actions through Streamlit. Its tasks are isolated by browser session and disappear when the session or server restarts. The Cloud edition runs Streamlit only; the Django/HTMX implementation below remains a separate local backend exercise.
+
 ## Run (Python 3.10+)
 
 ```bash
